@@ -4,7 +4,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ConfigurationProperties(prefix = "config.ActiveDirectory")
+@ConfigurationProperties(prefix = "config.activedirectory.ldap")
 public class ActiveDirectoryConfigure {
 
 	private String hostDirectory, baseDirectory, username, password;
