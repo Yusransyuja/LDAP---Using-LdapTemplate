@@ -17,6 +17,7 @@ import org.springframework.ldap.filter.EqualsFilter;
 import org.springframework.ldap.support.LdapUtils;
 import org.springframework.stereotype.Service;
 
+import com.create.exp.constants.ApplicationConstants;
 import com.create.exp.message.Profile;
 
 @Service
@@ -36,9 +37,9 @@ public class UserServiceImpl implements UserService {
 	        searchControl.setCountLimit(10);
 
 	        AndFilter filter = new AndFilter();
-	        filter.and(new EqualsFilter("objectclass", "person"));
+	        filter.and(new EqualsFilter(ApplicationConstants.FILTER_OBJECT_CLASS, ApplicationConstants.FILTER_OBJECT_CLASS_PERSON));
 	        
-			dataList = ldapTemplate.search(LdapUtils.emptyLdapName(), filter.encode(), new ProfileAttributesMapper());
+	        dataList = ldapTemplate.search(LdapUtils.emptyLdapName(), filter.encode(), new ProfileAttributesMapper());
 
 		}catch (Exception e) {
 			logger.error("Exception", e);
@@ -54,13 +55,13 @@ public class UserServiceImpl implements UserService {
 	        SearchControls searchControl = new SearchControls();
 	        searchControl.setSearchScope(SearchControls.SUBTREE_SCOPE);
 	        searchControl.setTimeLimit(3000);
-	        searchControl.setReturningAttributes(new String[]{"cn"});
+	        searchControl.setReturningAttributes(new String[]{ApplicationConstants.FILTER_OBJECT_FULLNAME});
 
 	        AndFilter filter = new AndFilter();
-	        filter.and(new EqualsFilter("objectclass", "person"));
-	        filter.and(new EqualsFilter("sn", firstName));
+	        filter.and(new EqualsFilter(ApplicationConstants.FILTER_OBJECT_CLASS, ApplicationConstants.FILTER_OBJECT_CLASS_PERSON));
+	        filter.and(new EqualsFilter(ApplicationConstants.FILTER_OBJECT_FIRSTNAME, firstName));
 	        
-			dataList = ldapTemplate.search(LdapUtils.emptyLdapName(), filter.encode(), new ProfileAttributesMapper());
+	        dataList = ldapTemplate.search(LdapUtils.emptyLdapName(), filter.encode(), new ProfileAttributesMapper());
 
 		}catch (Exception e) {
 			logger.error("Exception", e);
@@ -73,8 +74,8 @@ public class UserServiceImpl implements UserService {
    private class ProfileAttributesMapper implements AttributesMapper<Profile> {
         public Profile mapFromAttributes(Attributes attrs) throws NamingException {
         	Profile profile = new Profile();
-        	profile.setFullName((String) attrs.get("cn").get());
-        	profile.setLastName((String) attrs.get("sn").get());
+        	profile.setFullName((String) attrs.get(ApplicationConstants.FILTER_OBJECT_FULLNAME).get());
+        	profile.setLastName((String) attrs.get(ApplicationConstants.FILTER_OBJECT_FIRSTNAME).get());
             return profile;
         }
     }

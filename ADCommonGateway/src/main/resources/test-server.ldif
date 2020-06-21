@@ -16,34 +16,34 @@ objectclass: organizationalUnit
 ou: people
 
 # Create People
-dn: uid=john,ou=people,dc=example,dc=com
+dn: uid=Yusran,ou=people,dc=example,dc=com
 objectclass: top
 objectclass: person
 objectclass: organizationalPerson
 objectclass: inetOrgPerson
-cn: John Doe
-sn: John
-uid: john
+cn: Yusran ucan
+sn: Yusran
+uid: Yusran
 password: secret
 
-dn: uid=jihn,ou=people,dc=example,dc=com
+dn: uid=Ucan,ou=people,dc=example,dc=com
 objectclass: top
 objectclass: person
 objectclass: organizationalPerson
 objectclass: inetOrgPerson
-cn: Jihn Die
-sn: Jihn
-uid: jihn
+cn: Ucan Bru
+sn: Ucan
+uid: Ucan
 password: secret
 
-dn: uid=jahn,ou=people,dc=example,dc=com
+dn: uid=Fruis,ou=people,dc=example,dc=com
 objectclass: top
 objectclass: person
 objectclass: organizationalPerson
 objectclass: inetOrgPerson
-cn: Jahn Dae
-sn: Jahn
-uid: jahn
+cn: Fruis Dreh
+sn: Fruis
+uid: Fruis
 password: secret
 
 # Create Groups
@@ -52,12 +52,12 @@ objectclass: top
 objectclass: groupOfUniqueNames
 cn: developers
 ou: developer
-uniqueMember: uid=john,ou=people,dc=example,dc=com
-uniqueMember: uid=jihn,ou=people,dc=example,dc=com
+uniqueMember: uid=Fruis,ou=people,dc=example,dc=com
+uniqueMember: uid=Ucan,ou=people,dc=example,dc=com
 
 dn: cn=managers,ou=groups,dc=example,dc=com
 objectclass: top
 objectclass: groupOfUniqueNames
 cn: managers
 ou: manager
-uniqueMember: uid=jahn,ou=people,dc=example,dc=com
+uniqueMember: uid=Yusran,ou=people,dc=example,dc=com

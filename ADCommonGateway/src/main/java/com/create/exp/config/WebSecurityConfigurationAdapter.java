@@ -7,8 +7,11 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 @Configuration
-public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfigurationAdapter extends WebSecurityConfigurerAdapter {
 
+	@Autowired
+	private WebSecurityConfiguration webSecurityConfiguration;
+	
 	@Override
     protected void configure(HttpSecurity http) throws Exception{
         http
@@ -21,8 +24,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth)throws Exception{
         auth.inMemoryAuthentication()
-            .withUser("admin")
-            .password("{noop}admin")
+            .withUser(webSecurityConfiguration.getUsername())
+            .password("{noop}"+webSecurityConfiguration.getPassword())
             .roles("APPS");
     }
 }
