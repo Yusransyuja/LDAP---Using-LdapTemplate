@@ -32,6 +32,7 @@ public class UserController {
 		}
 	}
 	
+	
 	@PostMapping(value = "/api/ad/getProfileByName")
 	public void getProfileByName(@RequestBody AdRequest request) throws Exception {		
 		try {	
