@@ -40,8 +40,7 @@ public class UserServiceImpl implements UserService {
 	        filter.and(new EqualsFilter(ApplicationConstants.FILTER_OBJECT_CLASS, ApplicationConstants.FILTER_OBJECT_CLASS_PERSON));
 	        
 	        dataList = ldapTemplate.search(LdapUtils.emptyLdapName(), filter.encode(), new ProfileAttributesMapper());
-
-		}catch (Exception e) {
+	     }catch (Exception e) {
 			logger.error("Exception", e);
 			throw e;
 		}
@@ -62,8 +61,7 @@ public class UserServiceImpl implements UserService {
 	        filter.and(new EqualsFilter(ApplicationConstants.FILTER_OBJECT_FIRSTNAME, firstName));
 	        
 	        dataList = ldapTemplate.search(LdapUtils.emptyLdapName(), filter.encode(), new ProfileAttributesMapper());
-
-		}catch (Exception e) {
+	    }catch (Exception e) {
 			logger.error("Exception", e);
 			throw e;
 		}
